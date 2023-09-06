@@ -11,10 +11,10 @@ CREATE TABLE IF NOT EXISTS professor
 
 CREATE TABLE IF NOT EXISTS student
 (
-    s-email VARCHAR(50) NOT NULL,
-    s-name VARCHAR(50) NOT NULL,
+    s_email VARCHAR(50) NOT NULL,
+    s_name VARCHAR(50) NOT NULL,
     major VARCHAR(10) NOT NULL,
-    PRIMARY KEY(s-email)
+    PRIMARY KEY(s_email)
 );
 
 CREATE TABLE IF NOT EXISTS course
@@ -29,18 +29,12 @@ CREATE TABLE IF NOT EXISTS course
 CREATE TABLE IF NOT EXISTS enroll
 (
     c_number VARCHAR(50) NOT NULL,
-    s-email VARCHAR(50) NOT NULL,
-    PRIMARY KEY(c_number, s-email)
+    s_email VARCHAR(50) NOT NULL,
+    PRIMARY KEY(c_number, s_email)
 );
 
 
 -- Create FKs
-ALTER TABLE professor
-    ADD    FOREIGN KEY (p_email)
-    REFERENCES course(p_email)
-    MATCH SIMPLE
-;
-    
 ALTER TABLE enroll
     ADD    FOREIGN KEY (c_number)
     REFERENCES course(c_number)
@@ -48,11 +42,18 @@ ALTER TABLE enroll
 ;
     
 ALTER TABLE enroll
-    ADD    FOREIGN KEY (s-email)
-    REFERENCES student(s-email)
+    ADD    FOREIGN KEY (s_email)
+    REFERENCES student(s_email)
+    MATCH SIMPLE
+;
+    
+ALTER TABLE course
+    ADD    FOREIGN KEY (p_email)
+    REFERENCES professor(p_email)
     MATCH SIMPLE
 ;
     
 
 -- Create Indexes
+
 
