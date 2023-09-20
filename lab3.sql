@@ -48,3 +48,27 @@ where p_email = 'p1@jmu.edu';
 delete from professor
 where p_email = 'p1@jmu.edu'
 
+--Q2.7
+select * from enroll
+
+--Q2.8
+select c_number,count(*) as num_student
+from enroll 
+group by c_number
+order by num_student desc
+limit 1
+
+--Q2.9
+select professor.p_name, course.c_name 
+from professor
+inner join course
+on professor.p_email = course.p_email
+
+--Q.10
+select professor.p_name, count(course.c_name) as num_courses_taught
+from professor
+inner join course on professor.p_email = course.p_email
+group by professor.p_name
+order by num_courses_taught desc
+limit 1;
+
